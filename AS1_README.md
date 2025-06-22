@@ -43,10 +43,4 @@ Automate EC2 instance management using AWS Lambda and Boto3.
    ![image](https://github.com/user-attachments/assets/a5a4736c-c75b-459f-b7c2-0d0a4e3b1d32)
 
 
-## Files
-- `lambda_function.py`: Lambda code.
-- `README.md`: This documentation.
-- `screenshots/`: AWS setup and testing screenshots.
 
-## Screenshots
-*(Add screenshots here — IAM Role, EC2 tags, Lambda Test, EC2 state change)*
