@@ -20,4 +20,4 @@ def lambda_handler(event, context):
         print(f"✅ Instance {instance_id} tagged successfully.")
         
     except Exception as e:
-        print(f"❌ Error tagging instance: {str(e)}")
+        print(f" Error tagging instance: {str(e)}")
