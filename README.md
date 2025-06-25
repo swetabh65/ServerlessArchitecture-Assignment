@@ -2,16 +2,16 @@
 
 ## 🧰 Tools & Services Used
 
-|Branch Name         | Title                               |
+|Branch Name         | Title                              |
 |--------------------|------------------------------------|
-| **AS1**            | Run Boto3 script on EC2 launch     |
-| **AS5**            | Trigger Lambda on EC2 state change |
-| **AS **            | Allow Lambda to tag EC2 instances  |
-| **AS **            | Script logic for tagging           |
+| **AS1**            | Automated Instance Management Using AWS Lambda and Boto3     |
+| **AS5**            | Auto-Tagging EC2 Instances on Launch Using AWS Lambda and Boto3 |
+| **AS **            | To be updated  |
+| **AS **            | To be updated       |
 
 
 ---
 
-Thank You
+**Thank You**
 
 ---
