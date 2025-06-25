@@ -6,7 +6,7 @@
 |--------------------|------------------------------------|
 | **AS1**            | Automated Instance Management Using AWS Lambda and Boto3     |
 | **AS5**            | Auto-Tagging EC2 Instances on Launch Using AWS Lambda and Boto3 |
-| **AS **            | To be updated  |
+| **AS8**            | Analyze Sentiment of User Reviews Using AWS Lambda, Boto3, and Amazon Comprehend  |
 | **AS **            | To be updated       |
 
 
