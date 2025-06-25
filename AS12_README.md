@@ -1,46 +1,141 @@
 # Auto-Scale EC2 Instances Based on Load Using AWS Lambda, Boto3, and SNS
 
-## Objective
-Automate EC2 instance management using AWS Lambda and Boto3.
+This project demonstrates how to automatically scale Amazon EC2 instances based on network load using AWS Lambda, CloudWatch (EventBridge), and Amazon SNS. The Lambda function monitors Application Load Balancer (ALB) traffic and launches or terminates EC2 instances accordingly, sending notifications through SNS.
 
-## AWS Services Used
-- EC2
-- Lambda
-- IAM
-- Boto3 (Python)
+---
 
-## Solution Summary
-- 2 EC2 instances created:
-  - **Auto-Stop**: Stops via Lambda.
-  - **Auto-Start**: Starts via Lambda.
-- Lambda Python function checks EC2 tags and manages their state.
+## 📌 Objective
 
-## Steps Performed
-1. **EC2 Instances**:
-   - Created 2 t2.micro instances.
-   - Tagged: `Action=Auto-Stop` & `Action=Auto-Start`.
-  
-    ![image](https://github.com/user-attachments/assets/349f241a-65d9-43fb-8542-9526c4bcaa67)
+Automatically:
+- ✅ Launch an EC2 instance when ALB network load is **high**
+- ✅ Terminate an EC2 instance when ALB load is **low**
+- ✅ Send notifications via Amazon SNS for each scaling action
+
+---
+
+## 🛠️ Technologies & Services Used
+
+- AWS Lambda (Python 3.x)
+- Amazon EC2
+- Application Load Balancer (ALB)
+- Amazon CloudWatch / EventBridge
+- Amazon SNS
+- Boto3 SDK
+- IAM Roles & Policies
+
+---
+
+## 📋 Setup Overview
+
+### 🟢 1. Create IAM Role for Lambda
+
+- Go to **IAM → Roles → Create Role**
+- Select **Lambda**
+- Attach these permissions:
+  - `AmazonEC2FullAccess`
+  - `CloudWatchReadOnlyAccess`
+  - `AmazonSNSFullAccess`
+
+---
+
+### 🟢 2. Create the Lambda Function
+
+- Go to **Lambda → Create Function**
+- Runtime: **Python 3.x**
+- Function name: `EC2AutoScaler`
+- Assign the IAM role from Step 1
+- Paste the Lambda code from [`lambda_function.py`](#)
+
+> 🔧 Make sure to update:
+> - `ALB_FULL_NAME`
+> - `AMI_ID`, `Subnet ID`, `Security Group ID`
+> - `SNS_TOPIC_ARN`
+
+---
+
+### 🟢 3. Create SNS Topic
+
+- Go to **SNS → Topics → Create topic**
+- Type: **Standard**
+- Name: `Swetabh-EC2AutoScalerTopic`
+- Copy the **Topic ARN**
+
+💡 **Add an Email or SMS subscription** to receive notifications.
+
+---
+
+### 🟢 4. Create Application Load Balancer (ALB)
+
+- Go to **EC2 → Load Balancers → Create**
+- Type: **Application Load Balancer**
+- Name: `Swetabh-AutoScaler-ALB-1`
+- Create a **Target Group** and attach EC2 instances
+- Use the ALB’s **Full Name** from its ARN:
 
 
-2. **IAM Role**:
-   - Created LambdaEC2ControlRole with AmazonEC2FullAccess.
-  
-    ![image](https://github.com/user-attachments/assets/dcaf5499-3fc9-43e4-9528-b76196b0a81f)
+
+---
+
+### 🟢 5. Create CloudWatch Rule (EventBridge)
+
+- Go to **EventBridge → Rules → Create Rule**
+- Name: `Run-EC2AutoScaler-Every5Min`
+- Type: `Schedule` → `rate(5 minutes)`
+- Flexible Time Window: **Off**
+- Target: `Lambda Function` → `EC2AutoScaler`  
+(or specify ARN manually if not visible)
+
+---
+
+## ✅ Lambda Scaling Logic
+
+- **If load > 80MB in 5 min** → Launch a new EC2 instance
+- **If load < 20MB and more than 1 instance** → Terminate 1 instance
+- **Else** → No action
+
+All actions are logged and notified via SNS.
+
+---
+
+## 📊 Sample Logs (CloudWatch)
+
+Average Load (NetworkIn): 91532485.00 bytes
+🚀 High load detected. Launched a new EC2 instance.
+
+Average Load (NetworkIn): 18924720.00 bytes
+🧹 Low load detected. Terminated EC2 instance i-12345678
 
 
-3. **Lambda Function**:
-   - Python 3.12 function using Boto3.
-   - Filters instances using tags and starts/stops accordingly.
-  
-    ![image](https://github.com/user-attachments/assets/f9bcef9b-ee15-4054-8110-eee3bb17918a)
+![image](https://github.com/user-attachments/assets/df883955-5f1b-447a-9339-ba1e17c204bb)
 
 
-4. **Testing**:
-   - Manual Lambda trigger.
-   - Verified EC2 state changes in the AWS Console.
-  
-   ![image](https://github.com/user-attachments/assets/a5a4736c-c75b-459f-b7c2-0d0a4e3b1d32)
 
+---
+
+
+## 📬 Sample SNS Notification
+
+Subject: EC2 AutoScaler Update
+🚀 High load (91532485.00) - Launched a new EC2 instance.
+
+
+---
+
+## ✅ Final Checklist
+
+- [x] Lambda deployed with proper VPC, AMI, Subnet, SG
+- [x] CloudWatch rule triggers every 5 minutes
+- [x] ALB metrics integrated
+- [x] SNS topic with email/SMS subscription
+- [x] IAM roles assigned securely
+
+---
+
+## 👨‍💻 Author
+
+**Swetabh Sonal**  
+Automating Cloud Infrastructure with 💡 and ☁️
+
+---
 
 
