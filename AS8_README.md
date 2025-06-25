@@ -1,46 +1,30 @@
 # Analyze Sentiment of User Reviews Using AWS Lambda, Boto3, and Amazon Comprehend
 
-## Objective
-Automate EC2 instance management using AWS Lambda and Boto3.
 
-## AWS Services Used
-- EC2
-- Lambda
-- IAM
-- Boto3 (Python)
+This project demonstrates how to automatically analyze the **sentiment of user reviews** using AWS Lambda and Amazon Comprehend. It uses Python and Boto3 to classify incoming text as **Positive**, **Negative**, **Neutral**, or **Mixed**.
 
-## Solution Summary
-- 2 EC2 instances created:
-  - **Auto-Stop**: Stops via Lambda.
-  - **Auto-Start**: Starts via Lambda.
-- Lambda Python function checks EC2 tags and manages their state.
+---
 
-## Steps Performed
-1. **EC2 Instances**:
-   - Created 2 t2.micro instances.
-   - Tagged: `Action=Auto-Stop` & `Action=Auto-Start`.
-  
-    ![image](https://github.com/user-attachments/assets/349f241a-65d9-43fb-8542-9526c4bcaa67)
+## 📌 Objective
 
+Automatically receive user reviews, process them via Amazon Comprehend, and log the sentiment analysis result using AWS Lambda.
 
-2. **IAM Role**:
-   - Created LambdaEC2ControlRole with AmazonEC2FullAccess.
-  
-    ![image](https://github.com/user-attachments/assets/dcaf5499-3fc9-43e4-9528-b76196b0a81f)
+---
+
+## 🧰 Services Used
+
+| AWS Service             | Purpose                                |
+|-------------------------|----------------------------------------|
+| **AWS Lambda**          | Serverless function to run analysis    |
+| **Amazon Comprehend**   | NLP service to analyze sentiment       |
+| **IAM**                 | Manage Lambda permissions              |
+| **CloudWatch Logs**     | Store Lambda execution logs            |
+
+---
+
+## 📁 Project Structure
 
 
-3. **Lambda Function**:
-   - Python 3.12 function using Boto3.
-   - Filters instances using tags and starts/stops accordingly.
-  
-    ![image](https://github.com/user-attachments/assets/f9bcef9b-ee15-4054-8110-eee3bb17918a)
-
-
-4. **Testing**:
-   - Manual Lambda trigger.
-   - Verified EC2 state changes in the AWS Console.
-  
-   ![image](https://github.com/user-attachments/assets/a5a4736c-c75b-459f-b7c2-0d0a4e3b1d32)
 
 
 
