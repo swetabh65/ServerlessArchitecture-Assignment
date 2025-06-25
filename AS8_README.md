@@ -1,4 +1,4 @@
-# Automated Instance Management Using AWS Lambda and Boto3
+# Analyze Sentiment of User Reviews Using AWS Lambda, Boto3, and Amazon Comprehend
 
 ## Objective
 Automate EC2 instance management using AWS Lambda and Boto3.
