@@ -1,4 +1,4 @@
-# Automated Instance Management Using AWS Lambda and Boto3
+# Auto-Scale EC2 Instances Based on Load Using AWS Lambda, Boto3, and SNS
 
 ## Objective
 Automate EC2 instance management using AWS Lambda and Boto3.
