@@ -12,6 +12,17 @@
 
 ---
 
+🙌 Author
+**Swetabh Sonal**
+
+AWS | DevOps | Serverless Architectures
+
+🌐 https://swetabhsonal.com
+
+🌐 https://www.linkedin.com/in/swetabhsonal/
+
+
+
 **Thank You**
 
 ---
