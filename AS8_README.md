@@ -25,6 +25,22 @@ Automatically receive user reviews, process them via Amazon Comprehend, and log 
 ## 📁 Project Structure
 
 
+🟢 Step 1: Create IAM Role
+
+![image](https://github.com/user-attachments/assets/0e7baa70-cd49-419f-9fa2-e00313c3ab3d)
+
+
+🟢 Step 2: Create Lambda Function
+
+![image](https://github.com/user-attachments/assets/8bb85476-f227-4c13-a496-3fed44ae6dc1)
+
+
+🟢 Step 3: Lambda Function Code
+
+![image](https://github.com/user-attachments/assets/982ac9c0-e4c2-4ac5-9daf-efee9325b270)
+
+
+🟢 Step 4: Test the Lambda Function
 
 
 
